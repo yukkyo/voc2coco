@@ -36,7 +36,7 @@ def get_image_info(annotation_root):
     if path is None:
         filename = annotation_root.findtext('filename')
     else:
-        filename = path
+        filename = os.path.basename(path)
     img_name = os.path.basename(filename)
     img_id = os.path.splitext(img_name)[0]
 
