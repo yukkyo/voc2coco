@@ -3,6 +3,7 @@ import argparse
 import json
 import xml.etree.ElementTree as ET
 from typing import Dict, List
+from tqdm import tqdm
 
 
 def get_label2id(labels_path: str) -> Dict[str, int]:
@@ -86,7 +87,8 @@ def convert_xmls_to_cocojson(annotation_paths: List[str],
         "categories": []
     }
     bnd_id = 1  # START_BOUNDING_BOX_ID, TODO input as args ?
-    for a_path in annotation_paths:
+    print('Start converting !')
+    for a_path in tqdm(annotation_paths):
         # Read annotation xml
         ann_tree = ET.parse(a_path)
         ann_root = ann_tree.getroot()
