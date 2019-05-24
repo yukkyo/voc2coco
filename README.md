@@ -46,12 +46,20 @@ $ python voc2coco.py \
 ### 3. Example of usage
 
 ```bash
-$ python voc2coco.py \
+$ python voc2coco.py \                                                                                                                                              金  5/24 20:14:59 2019
     --ann_dir sample/Annotations \
-    --ann_ids sample/test.txt \
+    --ann_ids sample/dataset_ids/test.txt \
     --labels sample/labels.txt \
     --output sample/bccd_test_cocoformat.json \
     --ext xml
+
+# Check output
+$ ls sample/ | grep bccd_test_cocoformat.json                                                                                                                    金  5/24 20:16:09 2019
+bccd_test_cocoformat.json
+
+# Check output
+cut -f -4 -d , sample/bccd_test_cocoformat.json                                                                                                                金  5/24 20:20:49 2019
+{"images": [{"file_name": "BloodImage_00007.jpg", "height": 480, "width": 640, "id": "BloodImage_00007"}
 ```
 
 You can convert [Shenggan/BCCD_Dataset: BCCD Dataset is a small-scale dataset for blood cells detection.](https://github.com/Shenggan/BCCD_Dataset) by this script.
