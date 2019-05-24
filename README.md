@@ -2,7 +2,7 @@
 
 This is script for converting VOC format XMLs to COCO format json(ex. coco_eval.json).
 
-## Why we need to convert VOC xmls to COCO format json ?
+### Why we need to convert VOC xmls to COCO format json ?
 
 We can use COCO API, this is very useful(ex. calculating mAP).
 
@@ -20,8 +20,9 @@ Label2
 ...
 ```
 
+### 2. Run script
 
-### 2. Usage 1(Use ids list)
+##### 2.1 Usage 1(Use ids list)
 
 ```bash
 $ python voc2coco.py \
@@ -33,7 +34,7 @@ $ python voc2coco.py \
 ```
 
 
-### 2. Usage 2(Use annotation paths list)
+##### 2.2 Usage 2(Use annotation paths list)
 
 ```bash
 $ python voc2coco.py \
@@ -44,6 +45,8 @@ $ python voc2coco.py \
 ```
 
 ### 3. Example of usage
+
+In this case, you can convert [Shenggan/BCCD_Dataset: BCCD Dataset is a small-scale dataset for blood cells detection.](https://github.com/Shenggan/BCCD_Dataset) by this script.
 
 ```bash
 $ python voc2coco.py \                                                                                                                                              金  5/24 20:14:59 2019
@@ -61,5 +64,3 @@ bccd_test_cocoformat.json
 cut -f -4 -d , sample/bccd_test_cocoformat.json                                                                                                                金  5/24 20:20:49 2019
 {"images": [{"file_name": "BloodImage_00007.jpg", "height": 480, "width": 640, "id": "BloodImage_00007"}
 ```
-
-You can convert [Shenggan/BCCD_Dataset: BCCD Dataset is a small-scale dataset for blood cells detection.](https://github.com/Shenggan/BCCD_Dataset) by this script.
