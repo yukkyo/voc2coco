@@ -4,6 +4,7 @@ import json
 import xml.etree.ElementTree as ET
 from typing import Dict, List
 from tqdm import tqdm
+import re
 
 
 def get_label2id(labels_path: str) -> Dict[str, int]:
@@ -32,7 +33,7 @@ def get_annpaths(ann_dir_path: str = None,
     return ann_paths
 
 
-def get_image_info(annotation_root):
+def get_image_info(annotation_root, extract_num_from_imgid=True):
     path = annotation_root.findtext('path')
     if path is None:
         filename = annotation_root.findtext('filename')
@@ -40,6 +41,8 @@ def get_image_info(annotation_root):
         filename = os.path.basename(path)
     img_name = os.path.basename(filename)
     img_id = os.path.splitext(img_name)[0]
+    if extract_num_from_imgid and isinstance(img_id, str):
+        img_id = int(re.findall(r'\d+', img_id)[0])
 
     size = annotation_root.find('size')
     width = int(size.findtext('width'))
@@ -79,7 +82,8 @@ def get_coco_annotation_from_obj(obj, label2id):
 
 def convert_xmls_to_cocojson(annotation_paths: List[str],
                              label2id: Dict[str, int],
-                             output_jsonpath: str):
+                             output_jsonpath: str,
+                             extract_num_from_imgid: bool = True):
     output_json_dict = {
         "images": [],
         "type": "instances",
@@ -93,7 +97,8 @@ def convert_xmls_to_cocojson(annotation_paths: List[str],
         ann_tree = ET.parse(a_path)
         ann_root = ann_tree.getroot()
 
-        img_info = get_image_info(annotation_root=ann_root)
+        img_info = get_image_info(annotation_root=ann_root,
+                                  extract_num_from_imgid=extract_num_from_imgid)
         img_id = img_info['id']
         output_json_dict['images'].append(img_info)
 
@@ -136,7 +141,8 @@ def main():
     convert_xmls_to_cocojson(
         annotation_paths=ann_paths,
         label2id=label2id,
-        output_jsonpath=args.output
+        output_jsonpath=args.output,
+        extract_num_from_imgid=True
     )
 
 
