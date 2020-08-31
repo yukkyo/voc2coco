@@ -130,6 +130,8 @@ def main():
                         help='path to label list.')
     parser.add_argument('--output', type=str, default='output.json', help='path to output json file')
     parser.add_argument('--ext', type=str, default='', help='additional extension of annotation file')
+    parser.add_argument('--extract_num_from_imgid', action="store_true",
+                        help='Extract image number from the image filename')
     args = parser.parse_args()
     label2id = get_label2id(labels_path=args.labels)
     ann_paths = get_annpaths(
@@ -142,7 +144,7 @@ def main():
         annotation_paths=ann_paths,
         label2id=label2id,
         output_jsonpath=args.output,
-        extract_num_from_imgid=True
+        extract_num_from_imgid=args.extract_num_from_imgid
     )
 
 
