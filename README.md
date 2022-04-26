@@ -26,7 +26,11 @@ In order to get all labels from your `*.xml` files, you can use this command in 
 grep -REoh '<name>.*</name>' /Path_to_Folder | sort | uniq
 ```
 
-This will search for all name tags in `VOC.xml` files, then show unique ones. This is very useful for making labels.txt.
+This will search for all name tags in `VOC.xml` files, then show unique ones. You can also go further and create `labels.txt` file. 
+
+```
+grep -ERoh '<name>(.*)</name>' . | sort | uniq | sed 's/<name>//g' | sed 's/<\/name>//g' > labels.txt
+```
 
 
 ### 2. Run script
