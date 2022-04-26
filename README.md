@@ -23,7 +23,7 @@ Label2
 In order to get all labels from your `*.xml` files, you can use this command in shell:
 
 ```
-grep -h -R -E '<name>.*</name>' /Path_to_Folder | sed 's/ //g' | sort | uniq 
+grep -REoh '<name>.*</name>' /Path_to_Folder | sort | uniq
 ```
 
 This will search for all name tags in `VOC.xml` files, then show unique ones. This is very useful for making labels.txt.
