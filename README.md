@@ -29,7 +29,7 @@ grep -REoh '<name>.*</name>' /Path_to_Folder | sort | uniq
 This will search for all name tags in `VOC.xml` files, then show unique ones. You can also go further and create `labels.txt` file. 
 
 ```
-grep -ERoh '<name>(.*)</name>' . | sort | uniq | sed 's/<name>//g' | sed 's/<\/name>//g' > labels.txt
+grep -ERoh '<name>(.*)</name>' /Path_to_folder | sort | uniq | sed 's/<name>//g' | sed 's/<\/name>//g' > labels.txt
 ```
 
 
