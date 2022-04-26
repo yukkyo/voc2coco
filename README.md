@@ -20,6 +20,15 @@ Label2
 ...
 ```
 
+In order to get all labels from your `*.xml` files, you can use this command in shell:
+
+```
+grep -h -R -E '<name>.*</name>' /Path_to_Folder | sed 's/ //g' | sort | uniq 
+```
+
+This will search for all name tags in `VOC.xml` files, then show unique ones. This is very useful for making labels.txt.
+
+
 ### 2. Run script
 
 ##### 2.1 Usage 1(Use ids list)
